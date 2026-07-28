@@ -15,6 +15,13 @@
   --footer-dark:#141414;
 }
 
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-jakarta), sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
 html,
 body {
   margin: 0;
@@ -48,21 +55,40 @@ main {
   }
 }
 
+.fr-page h1, .fr-page h2, .fr-page h3, .fr-page .serif { 
+  font-family: 'Fraunces', serif; 
+  letter-spacing: -0.01em; 
+}
+
+.fr-eyebrow { 
+  font-family: var(--font-jakarta), sans-serif; 
+  font-size: 12px; 
+  letter-spacing: .14em; 
+  text-transform: uppercase; 
+  font-weight: 600; 
+  color: var(--teal-deep); 
+}
+
+.fr-page a { text-decoration: none; color: inherit; }
+.fr-page button { font-family: inherit; cursor: pointer; }
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-alabaster);
+  color: var(--ink);
+  font-family: var(--font-jakarta), sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .fr-page{
   background:var(--bg-alabaster);
   color:var(--ink);
-  font-family:'Inter',sans-serif;
+  /* font-family:'Inter',sans-serif; */
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
 .fr-page h1, .fr-page h2, .fr-page h3, .fr-page .serif{ font-family:'Fraunces',serif; letter-spacing:-0.01em; }
-.fr-eyebrow{ font-family:'Inter',sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--teal-deep); }
+.fr-eyebrow{  font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--teal-deep); }
 .fr-page a{ text-decoration:none; color:inherit; }
 .fr-page button{ font-family:inherit; cursor:pointer; }
 .fr-page a:focus-visible, .fr-page button:focus-visible{ outline:2px solid var(--teal-deep); outline-offset:3px; border-radius:8px; }

@@ -8,6 +8,17 @@ import { useGsapScrollAnimations } from "../hooks/useGsapScrollAnimations";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
+// Option 2: Phosphor Icons Integration
+import { 
+  Tooth, 
+  MagnifyingGlass, 
+  Sparkle, 
+  Gear, 
+  SlidersHorizontal, 
+  Pulse, 
+  ShieldCheck 
+} from "@phosphor-icons/react";
+
 gsap.registerPlugin(ScrollTrigger);
 
 /* ============================================================
@@ -30,84 +41,74 @@ const orbitData: OrbitItem[] = [
 interface Service {
   name: string;
   desc: string;
-  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  Icon: React.ComponentType<React.ComponentProps<typeof Tooth>>;
 }
 
 /* ------------------------------------------------------------
-   ICÔNES DE SERVICE (CRISP 60PX SCALING)
+   ICÔNES DE SERVICE (@phosphor-icons/react - Option 2)
    ------------------------------------------------------------ */
 
-const iconBase = {
-  viewBox: "0 0 48 48",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 2.2,
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
-  style: {
-    shapeRendering: "geometricPrecision",
-    display: "block",
-  } as React.CSSProperties,
-};
-
-const ToothPath = () => (
-  <path d="M24 10c-3.2 0-4.6 2-7 2-3.3 0-6 2.6-6 7 0 3.6 1.2 6 2 9.4.7 3 1 6.1 2.6 8.3.9 1.3 2 2.3 3.2 2.3 1.8 0 2.2-3.6 2.9-6.4.4-1.6.8-3.1 2.3-3.1s1.9 1.5 2.3 3.1c.7 2.8 1.1 6.4 2.9 6.4 1.2 0 2.3-1 3.2-2.3 1.6-2.2 1.9-5.3 2.6-8.3.8-3.4 2-5.8 2-9.4 0-4.4-2.7-7-6-7-2.4 0-3.8-2-7-2Z" />
-);
-
-function ControleGeneralIcon(props: React.SVGProps<SVGSVGElement>) {
+function ControleGeneralIcon(props: React.ComponentProps<typeof Tooth>) {
   return (
-    <svg {...iconBase} {...props}>
-      <ToothPath />
-      <circle cx="34" cy="14" r="5.5" />
-      <path d="M38 18l4 4" />
-    </svg>
+    <div className="relative inline-flex items-center justify-center">
+      <Tooth size={38} weight="duotone" className="text-[#0EA5A0]" {...props} />
+      <div className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-white p-0.5 shadow-md ring-1 ring-gray-100">
+        <MagnifyingGlass size={12} weight="bold" className="text-gray-800" />
+      </div>
+    </div>
   );
 }
 
-function BlanchimentIcon(props: React.SVGProps<SVGSVGElement>) {
+function BlanchimentIcon(props: React.ComponentProps<typeof Tooth>) {
   return (
-    <svg {...iconBase} {...props}>
-      <ToothPath />
-      <path d="M36 8v6M33 11h6" />
-      <path d="M40 20l1.4 3.2L44.5 24l-3.1 1.3L40 28.5l-1.4-3.2L35.5 24l3.1-1.3L40 20Z" />
-    </svg>
+    <div className="relative inline-flex items-center justify-center">
+      <Tooth size={38} weight="duotone" className="text-[#0EA5A0]" {...props} />
+      <Sparkle size={18} weight="fill" className="absolute -top-1.5 -right-1.5 text-amber-400 animate-pulse" />
+    </div>
   );
 }
 
-function ImplantsIcon(props: React.SVGProps<SVGSVGElement>) {
+function ImplantsIcon(props: React.ComponentProps<typeof Tooth>) {
   return (
-    <svg {...iconBase} {...props}>
-      <ToothPath />
-      <path d="M24 34v10M20 37h8M20 40.5h8M20 44h8" />
-    </svg>
+    <div className="relative inline-flex items-center justify-center">
+      <Tooth size={38} weight="duotone" className="text-[#0EA5A0]" {...props} />
+      <div className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-white p-0.5 shadow-md ring-1 ring-gray-100">
+        <Gear size={12} weight="bold" className="text-gray-800" />
+      </div>
+    </div>
   );
 }
 
-function InvisalignIcon(props: React.SVGProps<SVGSVGElement>) {
+function InvisalignIcon(props: React.ComponentProps<typeof Tooth>) {
   return (
-    <svg {...iconBase} {...props}>
-      <ToothPath />
-      <path d="M14 16c-1.6 1-2.6 2.8-2.6 5.4 0 3.6 1.2 6 2 9.4M34 16c1.6 1 2.6 2.8 2.6 5.4 0 3.6-1.2 6-2 9.4" />
-    </svg>
+    <div className="relative inline-flex items-center justify-center">
+      <Tooth size={38} weight="duotone" className="text-[#0EA5A0]" {...props} />
+      <div className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-white p-0.5 shadow-md ring-1 ring-gray-100">
+        <SlidersHorizontal size={12} weight="bold" className="text-gray-800" />
+      </div>
+    </div>
   );
 }
 
-function CanalIcon(props: React.SVGProps<SVGSVGElement>) {
+function CanalIcon(props: React.ComponentProps<typeof Tooth>) {
   return (
-    <svg {...iconBase} {...props}>
-      <ToothPath />
-      <path d="M24 22v18" />
-      <path d="M21 25h6M21.6 29h4.8M22.1 33h3.8M22.6 37h2.8" />
-    </svg>
+    <div className="relative inline-flex items-center justify-center">
+      <Tooth size={38} weight="duotone" className="text-[#0EA5A0]" {...props} />
+      <div className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-white p-0.5 shadow-md ring-1 ring-gray-100">
+        <Pulse size={12} weight="bold" className="text-rose-500" />
+      </div>
+    </div>
   );
 }
 
-function FacettesIcon(props: React.SVGProps<SVGSVGElement>) {
+function FacettesIcon(props: React.ComponentProps<typeof Tooth>) {
   return (
-    <svg {...iconBase} {...props}>
-      <ToothPath />
-      <path d="M20 13c1.6-1.4 2.8-2 4-2s2.4.6 4 2c2.6 0 4.6 1.8 5.2 4.6" />
-    </svg>
+    <div className="relative inline-flex items-center justify-center">
+      <Tooth size={38} weight="duotone" className="text-[#0EA5A0]" {...props} />
+      <div className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-white p-0.5 shadow-md ring-1 ring-gray-100">
+        <ShieldCheck size={12} weight="bold" className="text-teal-600" />
+      </div>
+    </div>
   );
 }
 
@@ -177,12 +178,7 @@ const socials = [
     name: "Instagram",
     href: "https://instagram.com/auradental",
     icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-      >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
         <rect x="3" y="3" width="18" height="18" rx="5" />
         <circle cx="12" cy="12" r="4" />
         <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
@@ -193,12 +189,7 @@ const socials = [
     name: "Facebook",
     href: "https://facebook.com/auradental",
     icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-      >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
         <path d="M15 8h-2c-1.1 0-2 .9-2 2v2H9v3h2v7h3v-7h2.2l.8-3H14v-1.5c0-.4.3-.7.7-.7H16V8Z" />
       </svg>
     ),
@@ -207,12 +198,7 @@ const socials = [
     name: "LinkedIn",
     href: "https://linkedin.com/company/auradental",
     icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-      >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
         <rect x="3" y="3" width="18" height="18" rx="4" />
         <circle cx="8" cy="8.5" r="1" fill="currentColor" stroke="none" />
         <path d="M8 11v6M12 17v-3.5c0-1.4 1-2.5 2.2-2.5S16 12.1 16 13.5V17M12 11v6" />
@@ -223,12 +209,7 @@ const socials = [
     name: "TikTok",
     href: "https://tiktok.com/@auradental",
     icon: (
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-      >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
         <path d="M13 3v11.2a3.3 3.3 0 1 1-2.4-3.18M13 3c.4 2.4 2.1 4 4.6 4.2" />
       </svg>
     ),
@@ -242,17 +223,15 @@ const socials = [
 export default function AuraDentalLanding() {
   const [scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [hoveredOrbit, setHoveredOrbit] = useState<number | null>(null);
 
   const pageRef = useRef<HTMLDivElement>(null);
   useGsapScrollAnimations(pageRef);
 
   const heroRef = useRef<HTMLElement>(null);
-  const orbitStageRef = useRef<HTMLDivElement>(null);
   const orbitBadgeRefs = useRef<(HTMLDivElement | null)[]>([]);
   const orbitPaused = useRef(false);
   const orbitAngles = useRef<number[]>(
-    orbitData.map((_, i) => (i / orbitData.length) * Math.PI * 2),
+    orbitData.map((_, i) => (i / orbitData.length) * Math.PI * 2)
   );
   const rafId = useRef<number>(1);
   const showcaseRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -267,7 +246,6 @@ export default function AuraDentalLanding() {
   }, []);
 
   /* --- Parallax sur la scène du hero --- */
-  /* --- Parallax sur la scène du hero --- */
   useEffect(() => {
     if (!heroRef.current) return;
 
@@ -280,7 +258,7 @@ export default function AuraDentalLanding() {
           start: "top top",
           end: "bottom top",
           scrub: true,
-          invalidateOnRefresh: true, // recompute values instead of using stale ones on refresh
+          invalidateOnRefresh: true,
         },
       });
       gsap.to(".fr-badge-1", {
@@ -318,9 +296,6 @@ export default function AuraDentalLanding() {
       });
     }, heroRef);
 
-    // Recalculate all ScrollTrigger positions once every image has actually
-    // finished loading — this is what prevents the hero image from
-    // "jumping" into place a moment after the page appears.
     const imgs = Array.from(document.querySelectorAll("img"));
     const waitForImages = Promise.all(
       imgs.map((img) =>
@@ -329,21 +304,60 @@ export default function AuraDentalLanding() {
           : new Promise((resolve) => {
               img.addEventListener("load", resolve, { once: true });
               img.addEventListener("error", resolve, { once: true });
-            }),
-      ),
+            })
+      )
     );
 
     waitForImages.then(() => {
       ScrollTrigger.refresh();
     });
 
-    // Safety net: also refresh on full window load (covers fonts, late assets)
     window.addEventListener("load", () => ScrollTrigger.refresh());
 
     return () => {
       ctx.revert();
       window.removeEventListener("load", () => ScrollTrigger.refresh());
     };
+  }, []);
+
+  /* --- Effet de Scroll sur les Images, Boutons, Cartes & Liens --- */
+  useEffect(() => {
+    if (!pageRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const scrollTargets = gsap.utils.toArray<HTMLElement>([
+        ".fr-hero-ctas button",
+        ".fr-hero-visual",
+        ".fr-showcase-card",
+        ".fr-service-card",
+        ".fr-why-visual img",
+        ".fr-btn-gold",
+        ".fr-social-btn",
+      ]);
+
+      scrollTargets.forEach((target) => {
+        gsap.fromTo(
+          target,
+          {
+            opacity: 0,
+            y: 35,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.85,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: target,
+              start: "top 88%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+    }, pageRef);
+
+    return () => ctx.revert();
   }, []);
 
   const showcaseImages = [
@@ -505,7 +519,7 @@ export default function AuraDentalLanding() {
           box-shadow: 0 12px 30px -18px rgba(0,0,0,.15); border-bottom:1px solid var(--border-soft);
         }
         .fr-logo{ display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-size:19px; font-weight:500; }
-        .fr-logo-mark{ width:30px; height:30px; border-radius:9px; background:linear-gradient(135deg, var(--teal) 0%, var(--gold) 100%); display:inline-block; flex-shrink:0; }
+        .fr-logo-mark{ width:30px; height:30px; border-radius:99px; background:linear-gradient(135deg, var(--teal) 0%, var(--gold) 100%); display:inline-block; flex-shrink:0; }
         .fr-nav-links{ display:flex; gap:6px; background: var(--glass); backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,.6); padding:6px; border-radius:999px; box-shadow: 0 8px 24px -14px rgba(0,0,0,.08); }
         .fr-nav-links a{ padding:9px 18px; border-radius:999px; font-size:14px; font-weight:500; color:var(--ink-soft); transition: background .25s ease, color .25s ease; }
         .fr-nav-links a:hover{ background:rgba(13,148,136,.08); color:var(--teal-deep); }
@@ -560,7 +574,7 @@ export default function AuraDentalLanding() {
         .fr-services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; max-width:1180px; margin:0 auto; perspective:1400px; }
         .fr-service-card{ background:#fff; border:1px solid var(--border-soft); border-radius:24px; padding:34px 28px; position:relative; overflow:hidden; transition: border-color .3s ease, box-shadow .3s ease; transform-style: preserve-3d; }
         .fr-service-card:hover{ border-color:rgba(14,165,160,.4); box-shadow: 0 30px 60px -30px rgba(13,148,136,.28); }
-        .fr-service-card .ring{ width:52px; height:52px; border-radius:16px; display:flex; align-items:center; justify-content:center; background:rgba(14,165,160,.08); border:1px solid rgba(14,165,160,.18); margin-bottom:22px; color:var(--teal-deep); }
+        .fr-service-card .ring{ width:64px; height:64px; border-radius:18px; display:flex; align-items:center; justify-content:center; background:rgba(14,165,160,.08); border:1px solid rgba(14,165,160,.18); margin-bottom:22px; color:var(--teal-deep); }
         .fr-service-card h3{ font-family:'Inter'; font-size:17px; font-weight:600; margin:0 0 8px; color:var(--ink); }
         .fr-service-card p{ font-size:13.5px; color:#6b6b64; line-height:1.6; margin:0; }
         .fr-service-card .num{ position:absolute; top:26px; right:28px; font-family:'Fraunces',serif; font-size:13px; color:#d6d6cc; font-style:italic; }
@@ -623,7 +637,7 @@ export default function AuraDentalLanding() {
       `}</style>
 
       {/* NAVIGATION */}
-     <Navbar scrolled={scrolled}/>
+      <Navbar scrolled={scrolled} />
 
       {/* HERO */}
       <section className="fr-hero" id="accueil" ref={heroRef}>
@@ -645,12 +659,12 @@ export default function AuraDentalLanding() {
           </p>
           <div className="fr-hero-ctas">
             <Link href={"/rendez-vous"}>
-            <button className="group inline-flex items-center gap-2 rounded-full bg-[#18181b] px-7 py-3 text-sm font-semibold text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400">
-              <span>Prendre Rendez-vous</span>
-              <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5">
-                →
-              </span>
-            </button>
+              <button className="group inline-flex items-center gap-2 rounded-full bg-[#18181b] px-7 py-3 text-sm font-semibold text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400">
+                <span>Prendre Rendez-vous</span>
+                <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5">
+                  →
+                </span>
+              </button>
             </Link>
           </div>
           <div className="fr-hero-trust">
@@ -666,7 +680,6 @@ export default function AuraDentalLanding() {
           </div>
         </div>
 
-        {/* The parent wrapping this whole hero-visual block needs a real height */}
         <div className="fr-hero-section h-[500px] md:h-[600px] lg:h-[700px]">
           <div className="fr-hero-visual relative h-full w-full overflow-hidden rounded-[2rem]">
             <img
@@ -740,8 +753,8 @@ export default function AuraDentalLanding() {
               onMouseLeave={() => handleCardLeave(i)}
             >
               <span className="num">0{i + 1}</span>
-              <div className="ring w-20 h-20 rounded-2xl flex items-center justify-center bg-[#0EA5A0]/10 border border-[#0EA5A0]/20 mb-6 text-[#0D9488]">
-                <s.Icon width={36} height={36} />
+              <div className="ring">
+                <s.Icon />
               </div>
               <h3>{s.name}</h3>
               <p>{s.desc}</p>
@@ -847,7 +860,7 @@ export default function AuraDentalLanding() {
             honnête — sans pression, sans vente forcée, juste de la précision.
           </p>
           <Link href={"/rendez-vous"}>
-          <button className="fr-btn-gold">Réservez Votre Consultation</button>
+            <button className="fr-btn-gold">Réservez Votre Consultation</button>
           </Link>
         </div>
       </div>
@@ -862,7 +875,7 @@ export default function AuraDentalLanding() {
           {faqData.map((item, i) => (
             <div
               key={item.q}
-              className={`fr-faq-item${openFaq === i ? " open" : ""}`}
+              className={`gsap-slide-left fr-faq-item${openFaq === i ? " open" : ""}`}
             >
               <button className="fr-accordion-btn" onClick={() => toggleFaq(i)}>
                 <span>{item.q}</span>
@@ -883,14 +896,14 @@ export default function AuraDentalLanding() {
       </section>
 
       {/* RÉSEAUX SOCIAUX */}
-      <section className="px-[5vw] py-28 text-center bg-[#FAFAF8]">
-        <span className="text-[12px] tracking-[.14em] uppercase font-semibold text-[#0D9488]">
+      <section className="px-[5vw] py-28 text-center bg-[#FAFAF8]" id="contact">
+        <span className="text-[12px] gsap-slide-left tracking-[.14em] uppercase font-semibold text-[#0D9488]">
           Restons en Contact
         </span>
-        <h2 className="font-serif text-[clamp(28px,3.4vw,42px)] font-medium text-[#1A1A1A] mt-3 mb-4">
+        <h2 className="font-serif gsap-slide-left text-[clamp(28px,3.4vw,42px)] font-medium text-[#1A1A1A] mt-3 mb-4">
           Suivez le Cabinet
         </h2>
-        <p className="text-[#57534e] text-[15.5px] leading-relaxed max-w-[460px] mx-auto mb-14">
+        <p className="text-[#57534e] gsap-slide-left text-[15.5px] leading-relaxed max-w-[460px] mx-auto mb-14">
           Coulisses, avant/après, et petits rappels d&apos;hygiène — sans le
           bruit habituel des réseaux.
         </p>
@@ -902,7 +915,7 @@ export default function AuraDentalLanding() {
               href={s.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-3 rounded-full border border-[#E2E8F0] bg-white px-6 py-4 shadow-[0_10px_24px_-14px_rgba(0,0,0,.12)] transition-all duration-300 hover:border-[#1A1A1A] hover:-translate-y-1 hover:shadow-[0_16px_30px_-14px_rgba(0,0,0,.2)]"
+              className="fr-social-btn group flex items-center gap-3 rounded-full border border-[#E2E8F0] bg-white px-6 py-4 shadow-[0_10px_24px_-14px_rgba(0,0,0,.12)] transition-all duration-300 hover:border-[#1A1A1A] hover:-translate-y-1 hover:shadow-[0_16px_30px_-14px_rgba(0,0,0,.2)]"
             >
               <span className="w-11 h-11 rounded-full bg-[#F4F4F0] flex items-center justify-center text-[#1A1A1A] transition-colors duration-300 group-hover:bg-[#1A1A1A] group-hover:text-white">
                 <span className="w-6 h-6">{s.icon}</span>
@@ -916,7 +929,7 @@ export default function AuraDentalLanding() {
       </section>
 
       {/* PIED DE PAGE */}
-      <Footer/>
+      <Footer />
     </div>
   );
 }
