@@ -5,6 +5,52 @@
   --foreground: #ffffff;
 }
 
+:root{
+  --bg-alabaster:#FAFAF8;
+  --bg-canvas:#F4F4F0;
+  --teal:#0EA5A0;
+  --teal-deep:#0D9488;
+  --gold:#D4AF37;
+  --border-soft:#E2E8F0;
+  --ink:#1A1A1A;
+  --ink-soft:#262626;
+  --glass:rgba(255,255,255,0.65);
+  --footer-dark:#141414;
+}
+.fr-page{
+  background:var(--bg-alabaster);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+.fr-page h1, .fr-page h2, .fr-page h3, .fr-page .serif{ font-family:'Fraunces',serif; letter-spacing:-0.01em; }
+.fr-eyebrow{ font-family:'Inter',sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--teal-deep); }
+.fr-page a{ text-decoration:none; color:inherit; }
+.fr-page button{ font-family:inherit; cursor:pointer; }
+.fr-page a:focus-visible, .fr-page button:focus-visible{ outline:2px solid var(--teal-deep); outline-offset:3px; border-radius:8px; }
+@media (prefers-reduced-motion: reduce){
+  .fr-page *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+}
+
+.fr-navbar{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:22px 5vw;
+  transition: background .45s ease, backdrop-filter .45s ease, box-shadow .45s ease, padding .35s ease, border-color .45s ease;
+  background:transparent; border-bottom:1px solid transparent;
+}
+.fr-navbar.scrolled{
+  padding:12px 5vw; background:rgba(250,250,248,.72);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 12px 30px -18px rgba(0,0,0,.15); border-bottom:1px solid var(--border-soft);
+}
+.fr-logo{ display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-size:19px; font-weight:500; }
+.fr-logo-mark{ width:30px; height:30px; border-radius:9px; background:linear-gradient(135deg, var(--teal) 0%, var(--gold) 100%); display:inline-block; flex-shrink:0; }
+.fr-nav-links{ display:flex; gap:6px; background: var(--glass); backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,.6); padding:6px; border-radius:999px; box-shadow: 0 8px 24px -14px rgba(0,0,0,.08); }
+.fr-nav-links a{ padding:9px 18px; border-radius:999px; font-size:14px; font-weight:500; color:var(--ink-soft); transition: background .25s ease, color .25s ease; }
+.fr-nav-links a:hover{ background:rgba(13,148,136,.08);
+
 html,
 body {
   margin: 0;
@@ -61,4 +107,5 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
 }
