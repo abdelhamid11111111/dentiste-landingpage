@@ -2,7 +2,28 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #ffffff;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #FAFAF8; /* Set your preferred default canvas background */
+  overflow-x: hidden;
+}
+
+/* Ensure fixed navbar doesn't push down layout unexpectedly */
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Remove default vertical collapse margins on root wrapper elements */
+#__next,
+main {
+  margin: 0;
+  padding: 0;
 }
 
 @theme inline {
@@ -10,6 +31,23 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+.fr-showcase-section{ padding:120px 5vw 140px; text-align:center; position:relative; background: var(--bg-canvas); border-top:1px solid var(--border-soft); border-bottom:1px solid var(--border-soft); }
+.fr-showcase-section h2{ font-size:clamp(28px,3.4vw,42px); font-weight:500; margin:0 auto 16px; max-width:620px; }
+.fr-showcase-section .sub{ color:#57534e; font-size:15.5px; line-height:1.7; max-width:540px; margin:0 auto 70px; }
+.fr-showcase-row{ display:flex; justify-content:center; align-items:center; max-width:1100px; margin:0 auto; }
+.fr-showcase-card{
+  width:280px; height:350px; margin-left:-30px; border-radius:18px; overflow:hidden;
+  box-shadow:0 26px 50px -20px rgba(0,0,0,.28);
+  will-change:transform; transition: box-shadow .3s ease;
+}
+.fr-showcase-card:first-child{ margin-left:0; }
+.fr-showcase-card:hover{ box-shadow:0 30px 60px -16px rgba(13,148,136,.35); z-index:20; }
+.fr-showcase-card img{ width:100%; height:100%; object-fit:cover; display:block; }
+@media (max-width: 900px){
+  .fr-showcase-row{ flex-wrap:wrap; gap:16px 0; }
+  .fr-showcase-card{ margin-left:0 !important; }
 }
 
 @media (prefers-color-scheme: dark) {
