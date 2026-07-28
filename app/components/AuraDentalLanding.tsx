@@ -493,12 +493,12 @@ export default function AuraDentalLanding() {
         .fr-page{
           background:var(--bg-alabaster);
           color:var(--ink);
-          font-family:'Inter',sans-serif;
+          font-family:var(--font-jakarta),sans-serif;
           overflow-x:hidden;
           -webkit-font-smoothing:antialiased;
         }
         .fr-page h1, .fr-page h2, .fr-page h3, .fr-page .serif{ font-family:'Fraunces',serif; letter-spacing:-0.01em; }
-        .fr-eyebrow{ font-family:'Inter',sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--teal-deep); }
+        .fr-eyebrow{ font-family:var(--font-jakarta),sans-serif; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:var(--teal-deep); }
         .fr-page a{ text-decoration:none; color:inherit; }
         .fr-page button{ font-family:inherit; cursor:pointer; }
         .fr-page a:focus-visible, .fr-page button:focus-visible{ outline:2px solid var(--teal-deep); outline-offset:3px; border-radius:8px; }
@@ -575,7 +575,7 @@ export default function AuraDentalLanding() {
         .fr-service-card{ background:#fff; border:1px solid var(--border-soft); border-radius:24px; padding:34px 28px; position:relative; overflow:hidden; transition: border-color .3s ease, box-shadow .3s ease; transform-style: preserve-3d; }
         .fr-service-card:hover{ border-color:rgba(14,165,160,.4); box-shadow: 0 30px 60px -30px rgba(13,148,136,.28); }
         .fr-service-card .ring{ width:64px; height:64px; border-radius:18px; display:flex; align-items:center; justify-content:center; background:rgba(14,165,160,.08); border:1px solid rgba(14,165,160,.18); margin-bottom:22px; color:var(--teal-deep); }
-        .fr-service-card h3{ font-family:'Inter'; font-size:17px; font-weight:600; margin:0 0 8px; color:var(--ink); }
+        .fr-service-card h3{ font-family:var(--font-jakarta),sans-serif; font-size:17px; font-weight:600; margin:0 0 8px; color:var(--ink); }
         .fr-service-card p{ font-size:13.5px; color:#6b6b64; line-height:1.6; margin:0; }
         .fr-service-card .num{ position:absolute; top:26px; right:28px; font-family:'Fraunces',serif; font-size:13px; color:#d6d6cc; font-style:italic; }
 
