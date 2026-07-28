@@ -3,7 +3,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 import { useGsapScrollAnimations } from "../hooks/useGsapScrollAnimations";
+import Navbar from "./Navbar";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -264,84 +266,84 @@ export default function AuraDentalLanding() {
   }, []);
 
   /* --- Parallax sur la scène du hero --- */
- /* --- Parallax sur la scène du hero --- */
-useEffect(() => {
-  if (!heroRef.current) return;
+  /* --- Parallax sur la scène du hero --- */
+  useEffect(() => {
+    if (!heroRef.current) return;
 
-  const ctx = gsap.context(() => {
-    gsap.to(".fr-hero-visual svg", {
-      yPercent: 8,
-      ease: "none",
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-        invalidateOnRefresh: true, // recompute values instead of using stale ones on refresh
-      },
+    const ctx = gsap.context(() => {
+      gsap.to(".fr-hero-visual svg", {
+        yPercent: 8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+          invalidateOnRefresh: true, // recompute values instead of using stale ones on refresh
+        },
+      });
+      gsap.to(".fr-badge-1", {
+        yPercent: -20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+      gsap.to(".fr-badge-2", {
+        yPercent: -30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+      gsap.to(".fr-badge-3", {
+        yPercent: -14,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+    }, heroRef);
+
+    // Recalculate all ScrollTrigger positions once every image has actually
+    // finished loading — this is what prevents the hero image from
+    // "jumping" into place a moment after the page appears.
+    const imgs = Array.from(document.querySelectorAll("img"));
+    const waitForImages = Promise.all(
+      imgs.map((img) =>
+        img.complete
+          ? Promise.resolve()
+          : new Promise((resolve) => {
+              img.addEventListener("load", resolve, { once: true });
+              img.addEventListener("error", resolve, { once: true });
+            }),
+      ),
+    );
+
+    waitForImages.then(() => {
+      ScrollTrigger.refresh();
     });
-    gsap.to(".fr-badge-1", {
-      yPercent: -20,
-      ease: "none",
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-        invalidateOnRefresh: true,
-      },
-    });
-    gsap.to(".fr-badge-2", {
-      yPercent: -30,
-      ease: "none",
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-        invalidateOnRefresh: true,
-      },
-    });
-    gsap.to(".fr-badge-3", {
-      yPercent: -14,
-      ease: "none",
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-        invalidateOnRefresh: true,
-      },
-    });
-  }, heroRef);
 
-  // Recalculate all ScrollTrigger positions once every image has actually
-  // finished loading — this is what prevents the hero image from
-  // "jumping" into place a moment after the page appears.
-  const imgs = Array.from(document.querySelectorAll("img"));
-  const waitForImages = Promise.all(
-    imgs.map((img) =>
-      img.complete
-        ? Promise.resolve()
-        : new Promise((resolve) => {
-            img.addEventListener("load", resolve, { once: true });
-            img.addEventListener("error", resolve, { once: true });
-          }),
-    ),
-  );
+    // Safety net: also refresh on full window load (covers fonts, late assets)
+    window.addEventListener("load", () => ScrollTrigger.refresh());
 
-  waitForImages.then(() => {
-    ScrollTrigger.refresh();
-  });
-
-  // Safety net: also refresh on full window load (covers fonts, late assets)
-  window.addEventListener("load", () => ScrollTrigger.refresh());
-
-  return () => {
-    ctx.revert();
-    window.removeEventListener("load", () => ScrollTrigger.refresh());
-  };
-}, []);
+    return () => {
+      ctx.revert();
+      window.removeEventListener("load", () => ScrollTrigger.refresh());
+    };
+  }, []);
 
   const showcaseImages = [
     "https://images.pexels.com/photos/19879741/pexels-photo-19879741/free-photo-of-woman-at-dentists.jpeg",
@@ -620,22 +622,7 @@ useEffect(() => {
       `}</style>
 
       {/* NAVIGATION */}
-      <nav className={`fr-navbar${scrolled ? " scrolled" : ""}`}>
-        <div className="fr-logo">
-          <span className="fr-logo-mark" />
-          AURA DENTAL
-        </div>
-        <div className="fr-nav-links">
-          <a href="#accueil">Accueil</a>
-          <a href="#services">Services</a>
-          <a href="#pourquoi-nous">Pourquoi Nous</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <button className="rounded-full bg-[#18181b] px-7 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#3f3f46] focus:outline-none focus:ring-2 focus:ring-gray-400">
-          <span>Prendre Rendez-vous</span>
-        </button>
-      </nav>
+     <Navbar scrolled={scrolled}/>
 
       {/* HERO */}
       <section className="fr-hero" id="accueil" ref={heroRef}>
@@ -656,12 +643,14 @@ useEffect(() => {
             moins à un acte médical qu&apos;à une parenthèse.
           </p>
           <div className="fr-hero-ctas">
+            <Link href={"/rendez-vous"}>
             <button className="group inline-flex items-center gap-2 rounded-full bg-[#18181b] px-7 py-3 text-sm font-semibold text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400">
               <span>Prendre Rendez-vous</span>
               <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5">
                 →
               </span>
             </button>
+            </Link>
           </div>
           <div className="fr-hero-trust">
             <div className="avatars">
@@ -676,27 +665,27 @@ useEffect(() => {
           </div>
         </div>
 
-      {/* The parent wrapping this whole hero-visual block needs a real height */}
-<div className="fr-hero-section h-[500px] md:h-[600px] lg:h-[700px]">
-  <div className="fr-hero-visual relative h-full w-full overflow-hidden rounded-[2rem]">
-    <img
-  src="https://cdn.prod.website-files.com/6481dbd1a8ecdc2acdd21208/673ee781c3d17897e309a308_dental-office-cabinets-your-key-to-organization-and-style.webp"
-  alt="Cabinet Dentaire"
-  className="absolute inset-0 h-[130%] w-full -top-[15%] object-cover"
-/>
+        {/* The parent wrapping this whole hero-visual block needs a real height */}
+        <div className="fr-hero-section h-[500px] md:h-[600px] lg:h-[700px]">
+          <div className="fr-hero-visual relative h-full w-full overflow-hidden rounded-[2rem]">
+            <img
+              src="https://cdn.prod.website-files.com/6481dbd1a8ecdc2acdd21208/673ee781c3d17897e309a308_dental-office-cabinets-your-key-to-organization-and-style.webp"
+              alt="Cabinet Dentaire"
+              className="absolute inset-0 h-[130%] w-full -top-[15%] object-cover"
+            />
 
-    {/* Badges */}
-    <div className="fr-float-badge fr-badge-1">
-      <span className="ic">✨</span>Aperçu du Sourire par IA Actif
-    </div>
-    <div className="fr-float-badge fr-badge-2">
-      <span className="ic">⭐</span>4,9/5 · 1 200+ Avis
-    </div>
-    <div className="fr-float-badge absolute right-6 top-[55%] z-20">
-      <span className="ic">🦷</span>Technologie Indolore Active
-    </div>
-  </div>
-</div>
+            {/* Badges */}
+            <div className="fr-float-badge fr-badge-1">
+              <span className="ic">✨</span>Aperçu du Sourire par IA Actif
+            </div>
+            <div className="fr-float-badge fr-badge-2">
+              <span className="ic">⭐</span>4,9/5 · 1 200+ Avis
+            </div>
+            <div className="fr-float-badge absolute right-6 top-[55%] z-20">
+              <span className="ic">🦷</span>Technologie Indolore Active
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* RÉSULTATS / SHOWCASE */}
@@ -856,7 +845,9 @@ useEffect(() => {
             Réservez une consultation privée et repartez avec un plan clair et
             honnête — sans pression, sans vente forcée, juste de la précision.
           </p>
+          <Link href={"/rendez-vous"}>
           <button className="fr-btn-gold">Réservez Votre Consultation</button>
+          </Link>
         </div>
       </div>
 
