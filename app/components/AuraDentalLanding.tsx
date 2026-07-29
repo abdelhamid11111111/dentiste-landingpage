@@ -112,6 +112,29 @@ function FacettesIcon(props: React.ComponentProps<typeof Tooth>) {
   );
 }
 
+// Icône par défaut utilisée quand un titre venant de Sanity
+// ne correspond à aucune icône connue ci-dessous.
+function DefaultServiceIcon(props: React.ComponentProps<typeof Tooth>) {
+  return (
+    <Tooth size={38} weight="duotone" className="text-[#0EA5A0]" {...props} />
+  );
+}
+
+// Dictionnaire : titre exact du service (Sanity) -> icône locale.
+// Si un titre ne correspond à rien ici, DefaultServiceIcon est utilisée.
+const iconMap: Record<
+  string,
+  React.ComponentType<React.ComponentProps<typeof Tooth>>
+> = {
+  "Contrôle Général": ControleGeneralIcon,
+  "Blanchiment des Dents": BlanchimentIcon,
+  "Implants Dentaires": ImplantsIcon,
+  "Invisalign®": InvisalignIcon,
+  "Traitement de Canal": CanalIcon,
+  "Facettes": FacettesIcon,
+};
+
+// Ce tableau sert de liste de secours si le Studio Sanity est vide.
 const services: Service[] = [
   {
     name: "Contrôle Général",
@@ -220,9 +243,32 @@ const socials = [
    COMPOSANT PRINCIPAL
    ============================================================ */
 
-export default function AuraDentalLanding() {
+interface SanityService {
+  _id: string;
+  title: string;
+  description: string;
+}
+
+export default function AuraDentalLanding({
+  sanityServices,
+}: {
+  sanityServices?: SanityService[];
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  // Si Sanity a des services publiés, on les utilise (titre + description),
+  // en réutilisant les icônes locales dans l'ordre.
+  // Sinon (Studio vide), on retombe sur la liste codée en dur ci-dessus,
+  // pour que le site ne soit jamais cassé/vide.
+  const mergedServices: Service[] =
+    sanityServices && sanityServices.length > 0
+      ? sanityServices.map((s) => ({
+          name: s.title,
+          desc: s.description,
+          Icon: iconMap[s.title] ?? DefaultServiceIcon,
+        }))
+      : services;
 
   const pageRef = useRef<HTMLDivElement>(null);
   useGsapScrollAnimations(pageRef);
@@ -742,9 +788,9 @@ export default function AuraDentalLanding() {
           </p>
         </div>
         <div className="fr-services-grid">
-          {services.map((s, i) => (
+          {mergedServices.map((s, i) => (
             <div
-              key={s.name}
+              key={s.name + i}
               ref={(el) => {
                 cardRefs.current[i] = el;
               }}

@@ -85,7 +85,7 @@ export default function RendezVousPage() {
               <h1 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
                 Prenez Rendez-vous
               </h1>
-              <p className="mt-4 text-base text-zinc-500 sm:text-lg">
+              <p className="mt-4 text-base mx-6 text-zinc-500 sm:text-lg">
                 Remplissez le formulaire ci-dessous, notre équipe vous recontactera très rapidement.
               </p>
             </div>
