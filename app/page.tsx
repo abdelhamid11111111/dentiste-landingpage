@@ -6,7 +6,13 @@ async function getServices() {
   return services;
 }
 
+async function getHero() {
+  const hero = await client.fetch(`*[_type == "hero"] | order(_updatedAt desc)[0]`)
+  return hero
+}
+
 export default async function Home() {
   const services = await getServices();
-  return <AuraDentalLanding sanityServices={services} />;
+  const hero = await getHero();
+  return <AuraDentalLanding sanityServices={services} sanityHero={hero} />;
 }

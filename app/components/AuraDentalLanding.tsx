@@ -2,21 +2,23 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import type { Image } from "sanity";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import { urlFor } from "@/sanity/lib/image";
 import { useGsapScrollAnimations } from "../hooks/useGsapScrollAnimations";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 // Option 2: Phosphor Icons Integration
-import { 
-  Tooth, 
-  MagnifyingGlass, 
-  Sparkle, 
-  Gear, 
-  SlidersHorizontal, 
-  Pulse, 
-  ShieldCheck 
+import {
+  Tooth,
+  MagnifyingGlass,
+  Sparkle,
+  Gear,
+  SlidersHorizontal,
+  Pulse,
+  ShieldCheck,
 } from "@phosphor-icons/react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -63,7 +65,11 @@ function BlanchimentIcon(props: React.ComponentProps<typeof Tooth>) {
   return (
     <div className="relative inline-flex items-center justify-center">
       <Tooth size={38} weight="duotone" className="text-[#0EA5A0]" {...props} />
-      <Sparkle size={18} weight="fill" className="absolute -top-1.5 -right-1.5 text-amber-400 animate-pulse" />
+      <Sparkle
+        size={18}
+        weight="fill"
+        className="absolute -top-1.5 -right-1.5 text-amber-400 animate-pulse"
+      />
     </div>
   );
 }
@@ -131,7 +137,7 @@ const iconMap: Record<
   "Implants Dentaires": ImplantsIcon,
   "Invisalign®": InvisalignIcon,
   "Traitement de Canal": CanalIcon,
-  "Facettes": FacettesIcon,
+  Facettes: FacettesIcon,
 };
 
 // Ce tableau sert de liste de secours si le Studio Sanity est vide.
@@ -201,7 +207,12 @@ const socials = [
     name: "Instagram",
     href: "https://instagram.com/auradental",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      >
         <rect x="3" y="3" width="18" height="18" rx="5" />
         <circle cx="12" cy="12" r="4" />
         <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
@@ -212,7 +223,12 @@ const socials = [
     name: "Facebook",
     href: "https://facebook.com/auradental",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      >
         <path d="M15 8h-2c-1.1 0-2 .9-2 2v2H9v3h2v7h3v-7h2.2l.8-3H14v-1.5c0-.4.3-.7.7-.7H16V8Z" />
       </svg>
     ),
@@ -221,7 +237,12 @@ const socials = [
     name: "LinkedIn",
     href: "https://linkedin.com/company/auradental",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      >
         <rect x="3" y="3" width="18" height="18" rx="4" />
         <circle cx="8" cy="8.5" r="1" fill="currentColor" stroke="none" />
         <path d="M8 11v6M12 17v-3.5c0-1.4 1-2.5 2.2-2.5S16 12.1 16 13.5V17M12 11v6" />
@@ -232,7 +253,12 @@ const socials = [
     name: "TikTok",
     href: "https://tiktok.com/@auradental",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      >
         <path d="M13 3v11.2a3.3 3.3 0 1 1-2.4-3.18M13 3c.4 2.4 2.1 4 4.6 4.2" />
       </svg>
     ),
@@ -251,8 +277,10 @@ interface SanityService {
 
 export default function AuraDentalLanding({
   sanityServices,
+  sanityHero,
 }: {
   sanityServices?: SanityService[];
+  sanityHero?: { title: string; subtitle: string; img?: Image; word: string };
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -277,7 +305,7 @@ export default function AuraDentalLanding({
   const orbitBadgeRefs = useRef<(HTMLDivElement | null)[]>([]);
   const orbitPaused = useRef(false);
   const orbitAngles = useRef<number[]>(
-    orbitData.map((_, i) => (i / orbitData.length) * Math.PI * 2)
+    orbitData.map((_, i) => (i / orbitData.length) * Math.PI * 2),
   );
   const rafId = useRef<number>(1);
   const showcaseRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -350,8 +378,8 @@ export default function AuraDentalLanding({
           : new Promise((resolve) => {
               img.addEventListener("load", resolve, { once: true });
               img.addEventListener("error", resolve, { once: true });
-            })
-      )
+            }),
+      ),
     );
 
     waitForImages.then(() => {
@@ -398,7 +426,7 @@ export default function AuraDentalLanding({
               start: "top 88%",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
       });
     }, pageRef);
@@ -693,15 +721,14 @@ export default function AuraDentalLanding({
             Excellence Dentaire Moderne
           </div>
           <h1 className="gsap-slide-left">
-            Réinventez Votre Sourire
-            <br />
-            avec la <em>Précision Suisse</em>
+            {sanityHero?.title ??
+              "Réinventez Votre Sourire avec"}
+              <em>{sanityHero?.word ?? 'la Précision marocain'}</em>
+              
           </h1>
           <p className="lead gsap-slide-right" data-reveal-delay=".15">
-            Une dentisterie méticuleuse, délivrée avec discrétion. AuraDental
-            associe une technologie d&apos;ingénierie suisse à une approche
-            patiente, centrée sur le confort — pour que chaque visite ressemble
-            moins à un acte médical qu&apos;à une parenthèse.
+            {sanityHero?.subtitle ??
+              "Une dentisterie méticuleuse, délivrée avec discrétion. AuraDental associe une technologie d&apos;ingénierie suisse à une approche patiente, centrée sur le confort — pour que chaque visite ressemble moins à un acte médical qu&apos;à une parenthèse."}
           </p>
           <div className="fr-hero-ctas">
             <Link href={"/rendez-vous"}>
@@ -729,11 +756,14 @@ export default function AuraDentalLanding({
         <div className="fr-hero-section h-[500px] md:h-[600px] lg:h-[700px]">
           <div className="fr-hero-visual relative h-full w-full overflow-hidden rounded-[2rem]">
             <img
-              src="https://cdn.prod.website-files.com/6481dbd1a8ecdc2acdd21208/673ee781c3d17897e309a308_dental-office-cabinets-your-key-to-organization-and-style.webp"
+              src={
+                sanityHero?.img
+                  ? urlFor(sanityHero.img).url()
+                  : "https://cdn.prod.website-files.com/6481dbd1a8ecdc2acdd21208/673ee781c3d17897e309a308_dental-office-cabinets-your-key-to-organization-and-style.webp"
+              }
               alt="Cabinet Dentaire"
               className="absolute inset-0 h-[130%] w-full -top-[15%] object-cover"
             />
-
             {/* Badges */}
             <div className="fr-float-badge fr-badge-1">
               <span className="ic">✨</span>Aperçu du Sourire par IA Actif
