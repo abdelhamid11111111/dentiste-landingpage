@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { SanityLive } from "@/sanity/lib/live";
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${plusJakarta.variable} ${fraunces.variable}`}>
       <body className="font-sans antialiased">
+        <SanityLive />
         {children} <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />{" "}
       </body>
     </html>

@@ -269,7 +269,7 @@ const socials = [
    COMPOSANT PRINCIPAL
    ============================================================ */
 
-interface SanityService {
+export interface SanityService {
   _id: string;
   title: string;
   description: string;

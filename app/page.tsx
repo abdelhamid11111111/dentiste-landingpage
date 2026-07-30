@@ -1,14 +1,15 @@
 import AuraDentalLanding from "./components/AuraDentalLanding";
-import { client } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/live";
+import type { SanityService } from "./components/AuraDentalLanding";
 
 async function getServices() {
-  const services = await client.fetch(`*[_type == "service"]`);
-  return services;
+  const { data } = await sanityFetch({ query: `*[_type == "service"]` });
+  return data as SanityService[];
 }
 
 async function getHero() {
-  const hero = await client.fetch(`*[_type == "hero"] | order(_updatedAt desc)[0]`)
-  return hero
+  const { data } = await sanityFetch({ query: `*[_type == "hero"] | order(_updatedAt desc)[0]` });
+  return data as unknown as Parameters<typeof AuraDentalLanding>[0]["sanityHero"];
 }
 
 export default async function Home() {
