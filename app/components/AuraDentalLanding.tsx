@@ -324,6 +324,14 @@ export default function AuraDentalLanding({
     if (!heroRef.current) return;
 
     const ctx = gsap.context(() => {
+      /* Le CTA du hero est au-dessus de la ligne de flottaison : révélé au
+         chargement, sans ScrollTrigger, pour qu'il reste toujours visible. */
+      gsap.fromTo(
+        ".fr-hero-ctas button",
+        { opacity: 0, y: 35 },
+        { opacity: 1, y: 0, duration: 0.85, delay: 0.35, ease: "power2.out" },
+      );
+
       gsap.to(".fr-hero-visual svg", {
         yPercent: 8,
         ease: "none",
@@ -400,7 +408,6 @@ export default function AuraDentalLanding({
 
     const ctx = gsap.context(() => {
       const scrollTargets = gsap.utils.toArray<HTMLElement>([
-        ".fr-hero-ctas button",
         ".fr-hero-visual",
         ".fr-showcase-card",
         ".fr-service-card",
@@ -594,19 +601,20 @@ export default function AuraDentalLanding({
         }
         .fr-logo{ display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-size:19px; font-weight:500; }
         .fr-logo-mark{ width:30px; height:30px; border-radius:99px; background:linear-gradient(135deg, var(--teal) 0%, var(--gold) 100%); display:inline-block; flex-shrink:0; }
-        .fr-nav-links{ display:flex; gap:6px; background: var(--glass); backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,.6); padding:6px; border-radius:999px; box-shadow: 0 8px 24px -14px rgba(0,0,0,.08); }
+        .fr-nav-links{ position:absolute; left:50%; transform:translateX(-50%); display:flex; gap:6px; background: var(--glass); backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,.6); padding:6px; border-radius:999px; box-shadow: 0 8px 24px -14px rgba(0,0,0,.08); }
         .fr-nav-links a{ padding:9px 18px; border-radius:999px; font-size:14px; font-weight:500; color:var(--ink-soft); transition: background .25s ease, color .25s ease; }
         .fr-nav-links a:hover{ background:rgba(13,148,136,.08); color:var(--teal-deep); }
         .fr-btn-outline{ padding:11px 24px; border-radius:999px; font-size:14px; font-weight:600; border:1.5px solid var(--ink); color:var(--ink); transition: border-color .3s ease, color .3s ease, background .3s ease; background:none; }
         .fr-btn-outline:hover{ border-color:var(--teal-deep); color:var(--teal-deep); background:rgba(13,148,136,.06); }
 
-        .fr-hero{ padding:170px 5vw 90px; display:grid; grid-template-columns:1.05fr 1fr; gap:60px; align-items:center; position:relative; }
-        .fr-hero-eyebrow-pill{ display:inline-flex; align-items:center; gap:8px; padding:7px 16px; border-radius:999px; background:rgba(212,175,55,.12); border:1px solid rgba(212,175,55,.35); color:#8a6d1f; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; margin-bottom:26px; }
+        .fr-hero{ min-height:100vh; min-height:100dvh; padding:clamp(96px, 12vh, 130px) 5vw clamp(24px, 4vh, 40px); box-sizing:border-box; display:grid; grid-template-columns:1.05fr 1fr; gap:clamp(28px, 4vh, 60px); align-items:center; position:relative; }
+        .fr-hero-copy{ display:flex; flex-direction:column; justify-content:center; align-items:stretch; }
+        .fr-hero-eyebrow-pill{ align-self:flex-start; display:inline-flex; align-items:center; gap:8px; padding:7px 16px; border-radius:999px; background:rgba(212,175,55,.12); border:1px solid rgba(212,175,55,.35); color:#8a6d1f; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; margin-bottom:clamp(14px, 2.5vh, 26px); }
         .fr-hero-eyebrow-pill .dot{ width:6px; height:6px; border-radius:50%; background:var(--gold); }
-        .fr-hero h1{ font-size:clamp(38px, 4.4vw, 64px); line-height:1.08; font-weight:500; color:var(--ink); margin:0 0 26px; }
+        .fr-hero h1{ font-size:clamp(30px, 4vw, 58px); line-height:1.1; font-weight:500; color:var(--ink); margin:0 0 clamp(12px, 2.2vh, 26px); }
         .fr-hero h1 em{ font-style:italic; color:var(--teal-deep); }
-        .fr-hero p.lead{ font-size:17px; line-height:1.7; color:#4a4a46; max-width:460px; margin:0 0 38px; }
-        .fr-hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:44px; }
+        .fr-hero p.lead{ font-size:clamp(14.5px, 1.6vh, 17px); line-height:1.65; color:#4a4a46; max-width:460px; margin:0 0 clamp(16px, 3vh, 38px); }
+        .fr-hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:clamp(18px, 3.4vh, 44px); }
         .fr-hero-trust{ display:flex; align-items:center; gap:18px; }
         .fr-hero-trust .avatars{ display:flex; }
         .fr-hero-trust .avatars div{ width:36px; height:36px; border-radius:50%; border:2.5px solid var(--bg-alabaster); margin-left:-10px; background:linear-gradient(135deg,#cfe8e6,#e9dcb8); }
@@ -614,7 +622,7 @@ export default function AuraDentalLanding({
         .fr-hero-trust-text{ font-size:13px; color:#57534e; }
         .fr-hero-trust-text strong{ color:var(--ink); }
 
-        .fr-hero-visual{ position:relative; border-radius:32px; overflow:hidden; height:600px; background: linear-gradient(160deg,#e9f3f2 0%, #f4efe0 100%); box-shadow: 0 40px 70px -35px rgba(0,0,0,.18); }
+        .fr-hero-visual{ position:relative; border-radius:32px; overflow:hidden; background: linear-gradient(160deg,#e9f3f2 0%, #f4efe0 100%); box-shadow: 0 40px 70px -35px rgba(0,0,0,.18); }
         .fr-hero-visual svg{ width:100%; height:100%; display:block; }
         .fr-float-badge{ position:absolute; background:var(--glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border:1px solid rgba(255,255,255,.8); border-radius:16px; padding:10px 16px; display:flex; align-items:center; gap:10px; box-shadow: 0 20px 40px -15px rgba(0,0,0,.14); font-size:12.5px; font-weight:600; color:var(--ink-soft); animation: fr-floatY 4s ease-in-out infinite; transition: transform .3s ease, box-shadow .3s ease; }
         .fr-float-badge:hover{ transform:translateY(-4px) scale(1.04); box-shadow:0 26px 46px -14px rgba(0,0,0,.2); }
@@ -694,8 +702,8 @@ export default function AuraDentalLanding({
         .fr-footer-bottom{ max-width:1180px; margin:0 auto; padding-top:26px; border-top:1px solid #2a2a2a; display:flex; justify-content:space-between; font-size:12.5px; color:#7a7a73; flex-wrap:wrap; gap:10px; }
 
         @media (max-width: 980px){
-          .fr-hero{ grid-template-columns:1fr; padding-top:140px; }
-          .fr-hero-visual{ height:420px; order:-1; }
+          .fr-hero{ grid-template-columns:1fr; min-height:auto; padding-top:120px; padding-bottom:50px; }
+          .fr-hero-section{ order:-1; }
           .fr-services-grid{ grid-template-columns:repeat(2,1fr); }
           .fr-why-us{ grid-template-columns:1fr; }
           .fr-why-visual{ height:380px; }
@@ -753,7 +761,7 @@ export default function AuraDentalLanding({
           </div>
         </div>
 
-        <div className="fr-hero-section h-[500px] md:h-[600px] lg:h-[700px]">
+        <div className="fr-hero-section h-[46vh] min-h-[300px] max-h-[560px] md:h-[58vh] md:max-h-[640px] lg:h-[66vh] lg:max-h-[720px]">
           <div className="fr-hero-visual relative h-full w-full overflow-hidden rounded-[2rem]">
             <img
               src={

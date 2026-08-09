@@ -67,11 +67,11 @@ const Navbar = ({ scrolled }: Prop) => {
           ))}
         </div>
 
-        <Link href={"/rendez-vous"}>
+        {/* <Link href={"/rendez-vous"}>
           <button className="rounded-full bg-[#18181b] px-7 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#3f3f46] focus:outline-none focus:ring-2 focus:ring-gray-400">
             <span>Prendre Rendez-vous</span>
           </button>
-        </Link>
+        </Link> */}
       </nav>
     </div>
   );
