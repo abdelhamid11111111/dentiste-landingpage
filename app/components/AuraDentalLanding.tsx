@@ -703,7 +703,8 @@ export default function AuraDentalLanding({
 
         @media (max-width: 980px){
           .fr-hero{ grid-template-columns:1fr; min-height:auto; padding-top:120px; padding-bottom:50px; }
-          .fr-hero-section{ order:-1; }
+          .fr-hero-copy{ order:1; }
+          .fr-hero-section{ order:2; }
           .fr-services-grid{ grid-template-columns:repeat(2,1fr); }
           .fr-why-us{ grid-template-columns:1fr; }
           .fr-why-visual{ height:380px; }
