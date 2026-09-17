@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#161616] py-16 text-[#A1A1AA]">
       <div className="mx-auto flex max-w-7xl flex-col space-y-12 px-6 sm:px-8 lg:flex-row lg:justify-between lg:space-y-0">
-        {/* Colonne 1: Marque */}
+        {/* Column 1: Brand */}
         <div className="flex max-w-sm flex-col">
           <div className="flex items-center gap-3">
             
@@ -13,7 +13,7 @@ export default function Footer() {
               <div
                 className={`group inline-flex items-center gap-3.5 focus:outline-none `}
               >
-                {/* Icône SVG : Dent géométrique & Éclat d'Aura */}
+                {/* SVG icon: geometric tooth & Aura sparkle */}
                 <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#0EA5A0] via-[#0D9488] to-[#D4AF37] p-2 text-white shadow-md shadow-[#0EA5A0]/20 transition-transform duration-300 group-hover:scale-105">
                   <svg
                     viewBox="0 0 32 32"
@@ -24,9 +24,9 @@ export default function Footer() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   >
-                    {/* Silhouette de dent épurée */}
+                    {/* Clean tooth silhouette */}
                     <path d="M16 6C12.5 6 10 8.5 10 12.5C10 16 11.2 18.2 12 21.5C12.7 24.3 13 27 14.5 27C15.5 27 15.8 24 16 22.5C16.2 24 16.5 27 17.5 27C19 27 19.3 24.3 20 21.5C20.8 18.2 22 16 22 12.5C22 8.5 19.5 6 16 6Z" />
-                    {/* Éclat lumineux (Aura) */}
+                    {/* Light sparkle (Aura) */}
                     <path
                       d="M25 7L27 9M27 7L25 9"
                       strokeWidth="1.5"
@@ -35,7 +35,7 @@ export default function Footer() {
                   </svg>
                 </div>
 
-                {/* Typographie de Marque */}
+                {/* Brand typography */}
                 <div className="flex flex-col leading-none">
                   <span className="font-serif text-xl font-medium tracking-tight text-white transition-colors duration-200 group-hover:text-[#2DD4BF]">
                     AURA
@@ -48,16 +48,15 @@ export default function Footer() {
             </Link>
           </div>
           <p className="mt-6 text-[15px] leading-relaxed text-[#A1A1AA]">
-            Dentisterie de précision suisse dans un cadre calme et moderne.
-            Soins complets, du contrôle de routine à la conception intégrale du
-            sourire.
+            Swiss-precision dentistry in a calm, modern setting. Complete care,
+            from the routine check-up to a full smile design.
           </p>
         </div>
 
-        {/* Colonne 2: Liens Rapides */}
+        {/* Column 2: Quick links */}
         <div className="flex flex-col">
           <h3 className="mb-6 text-xs font-semibold tracking-[0.15em] text-[#A1A1AA] uppercase">
-            Liens Rapides
+            Quick Links
           </h3>
           <ul className="flex flex-col space-y-4 text-[15px] text-[#E4E4E7]">
             <li>
@@ -65,7 +64,7 @@ export default function Footer() {
                 href={"/"}
                 className="hover:text-teal-400 transition-colors"
               >
-                Accueil
+                Home
               </Link>
             </li>
             <li>
@@ -78,10 +77,10 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href={"/a-propos"}
+                href={"/about"}
                 className="hover:text-teal-400 transition-colors"
               >
-                Pourquoi Nous
+                Why Us
               </Link>
             </li>
             <li>
@@ -95,20 +94,20 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Colonne 3: Heures */}
+        {/* Column 3: Hours */}
         <div className="flex flex-col">
           <h3 className="mb-6 text-xs font-semibold tracking-[0.15em] text-[#A1A1AA] uppercase">
-            Heures D&aposouverture
+            Opening Hours
           </h3>
           <ul className="flex flex-col space-y-4 text-[15px] text-[#E4E4E7]">
-            <li>Lun – Ven : 8h00 – 19h00</li>
-            <li>Samedi : 9h00 – 15h00</li>
-            <li>Dimanche : Fermé</li>
-            <li>Ligne d&aposurgence : 24h/24, 7j/7</li>
+            <li>Mon – Fri: 8:00 am – 7:00 pm</li>
+            <li>Saturday: 9:00 am – 3:00 pm</li>
+            <li>Sunday: Closed</li>
+            <li>Emergency line: 24/7</li>
           </ul>
         </div>
 
-        {/* Colonne 4: Contact */}
+        {/* Column 4: Contact */}
         <div className="flex flex-col">
           <h3 className="mb-6 text-xs font-semibold tracking-[0.15em] text-[#A1A1AA] uppercase">
             Contact

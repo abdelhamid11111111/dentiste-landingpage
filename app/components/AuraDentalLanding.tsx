@@ -24,7 +24,7 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 /* ============================================================
-   DONNÉES DE CONTENU (FR)
+   CONTENT DATA (EN)
    ============================================================ */
 
 interface OrbitItem {
@@ -32,12 +32,12 @@ interface OrbitItem {
 }
 
 const orbitData: OrbitItem[] = [
-  { label: "Fournisseur Invisalign®" },
-  { label: "Implants Straumann" },
-  { label: "Membre ADA" },
-  { label: "Technologie Dentaire Suisse" },
-  { label: "Certifié ISO 9001" },
-  { label: "Fournisseur Diamond" },
+  { label: "Invisalign® Provider" },
+  { label: "Straumann Implants" },
+  { label: "ADA Member" },
+  { label: "Swiss Dental Technology" },
+  { label: "ISO 9001 Certified" },
+  { label: "Diamond Provider" },
 ];
 
 interface Service {
@@ -47,10 +47,10 @@ interface Service {
 }
 
 /* ------------------------------------------------------------
-   ICÔNES DE SERVICE (@phosphor-icons/react - Option 2)
+   SERVICE ICONS (@phosphor-icons/react - Option 2)
    ------------------------------------------------------------ */
 
-function ControleGeneralIcon(props: React.ComponentProps<typeof Tooth>) {
+function GeneralCheckupIcon(props: React.ComponentProps<typeof Tooth>) {
   return (
     <div className="relative inline-flex items-center justify-center">
       <Tooth size={38} weight="duotone" className="text-[#0EA5A0]" {...props} />
@@ -61,7 +61,7 @@ function ControleGeneralIcon(props: React.ComponentProps<typeof Tooth>) {
   );
 }
 
-function BlanchimentIcon(props: React.ComponentProps<typeof Tooth>) {
+function WhiteningIcon(props: React.ComponentProps<typeof Tooth>) {
   return (
     <div className="relative inline-flex items-center justify-center">
       <Tooth size={38} weight="duotone" className="text-[#0EA5A0]" {...props} />
@@ -96,7 +96,7 @@ function InvisalignIcon(props: React.ComponentProps<typeof Tooth>) {
   );
 }
 
-function CanalIcon(props: React.ComponentProps<typeof Tooth>) {
+function RootCanalIcon(props: React.ComponentProps<typeof Tooth>) {
   return (
     <div className="relative inline-flex items-center justify-center">
       <Tooth size={38} weight="duotone" className="text-[#0EA5A0]" {...props} />
@@ -107,7 +107,7 @@ function CanalIcon(props: React.ComponentProps<typeof Tooth>) {
   );
 }
 
-function FacettesIcon(props: React.ComponentProps<typeof Tooth>) {
+function VeneersIcon(props: React.ComponentProps<typeof Tooth>) {
   return (
     <div className="relative inline-flex items-center justify-center">
       <Tooth size={38} weight="duotone" className="text-[#0EA5A0]" {...props} />
@@ -118,59 +118,66 @@ function FacettesIcon(props: React.ComponentProps<typeof Tooth>) {
   );
 }
 
-// Icône par défaut utilisée quand un titre venant de Sanity
-// ne correspond à aucune icône connue ci-dessous.
+// Default icon, used when a title coming from Sanity does not match
+// any of the known icons below.
 function DefaultServiceIcon(props: React.ComponentProps<typeof Tooth>) {
   return (
     <Tooth size={38} weight="duotone" className="text-[#0EA5A0]" {...props} />
   );
 }
 
-// Dictionnaire : titre exact du service (Sanity) -> icône locale.
-// Si un titre ne correspond à rien ici, DefaultServiceIcon est utilisée.
+// Map: exact service title (Sanity) -> local icon.
+// If a title matches nothing here, DefaultServiceIcon is used.
+// The French keys are kept as aliases so service documents still
+// published in French in the Studio keep their icon.
 const iconMap: Record<
   string,
   React.ComponentType<React.ComponentProps<typeof Tooth>>
 > = {
-  "Contrôle Général": ControleGeneralIcon,
-  "Blanchiment des Dents": BlanchimentIcon,
-  "Implants Dentaires": ImplantsIcon,
+  "General Check-up": GeneralCheckupIcon,
+  "Teeth Whitening": WhiteningIcon,
+  "Dental Implants": ImplantsIcon,
   "Invisalign®": InvisalignIcon,
-  "Traitement de Canal": CanalIcon,
-  Facettes: FacettesIcon,
+  "Root Canal Treatment": RootCanalIcon,
+  Veneers: VeneersIcon,
+  "Contrôle Général": GeneralCheckupIcon,
+  "Blanchiment des Dents": WhiteningIcon,
+  "Implants Dentaires": ImplantsIcon,
+  "Traitement de Canal": RootCanalIcon,
+  Facettes: VeneersIcon,
 };
 
-// Ce tableau sert de liste de secours si le Studio Sanity est vide.
+// This array is the fallback list used when the Sanity Studio is empty.
 const services: Service[] = [
   {
-    name: "Contrôle Général",
-    desc: "Examens complets et détartrages pour éviter que les petits problèmes ne s'aggravent.",
-    Icon: ControleGeneralIcon,
+    name: "General Check-up",
+    desc: "Thorough exams and cleanings that keep small problems from becoming big ones.",
+    Icon: GeneralCheckupIcon,
   },
   {
-    name: "Blanchiment des Dents",
-    desc: "Éclaircissement supervisé cliniquement, calibré selon votre émail.",
-    Icon: BlanchimentIcon,
+    name: "Teeth Whitening",
+    desc: "Clinically supervised brightening, calibrated to your own enamel.",
+    Icon: WhiteningIcon,
   },
   {
-    name: "Implants Dentaires",
-    desc: "Implants de précision Straumann posés avec un guidage 3D.",
+    name: "Dental Implants",
+    desc: "Straumann precision implants placed with 3D guidance.",
     Icon: ImplantsIcon,
   },
   {
     name: "Invisalign®",
-    desc: "Gouttières transparentes conçues à partir d'une simulation numérique complète de votre occlusion.",
+    desc: "Clear aligners designed from a full digital simulation of your bite.",
     Icon: InvisalignIcon,
   },
   {
-    name: "Traitement de Canal",
-    desc: "Thérapie assistée par microscope, pensée pour être réellement indolore.",
-    Icon: CanalIcon,
+    name: "Root Canal Treatment",
+    desc: "Microscope-assisted therapy, designed to be genuinely painless.",
+    Icon: RootCanalIcon,
   },
   {
-    name: "Facettes",
-    desc: "Coques en porcelaine façonnées à la main et assorties à votre teinte naturelle.",
-    Icon: FacettesIcon,
+    name: "Veneers",
+    desc: "Hand-shaped porcelain shells matched to your natural shade.",
+    Icon: VeneersIcon,
   },
 ];
 
@@ -181,24 +188,24 @@ interface FaqItem {
 
 const faqData: FaqItem[] = [
   {
-    q: "Mon plan de traitement comporte-t-il des coûts cachés ?",
-    a: "Non. Chaque plan inclut un devis fixe et une visualisation 3D avant le début des soins, et il ne change pas une fois le traitement commencé.",
+    q: "Are there hidden costs in my treatment plan?",
+    a: "No. Every plan comes with a fixed quote and a 3D visualisation before any care begins, and it does not change once treatment has started.",
   },
   {
-    q: "Proposez-vous une sédation pour les patients anxieux ?",
-    a: "Oui. Nous proposons le protoxyde d'azote, la sédation orale et la sédation IV, adaptées à votre niveau de confort après un court échange préalable.",
+    q: "Do you offer sedation for anxious patients?",
+    a: "Yes. We offer nitrous oxide, oral sedation and IV sedation, matched to your comfort level after a short conversation beforehand.",
   },
   {
-    q: "Comment fonctionne l'Aperçu du Sourire par IA ?",
-    a: "Nous scannons votre occlusion et générons un aperçu 3D réaliste du résultat, afin que vous puissiez le voir avant de vous engager dans un plan.",
+    q: "How does the AI Smile Preview work?",
+    a: "We scan your bite and generate a realistic 3D preview of the result, so you can see it before committing to a plan.",
   },
   {
-    q: "Vos implants et gouttières sont-ils certifiés ?",
-    a: "Oui. Nous utilisons les systèmes d'implants Straumann et sommes un fournisseur certifié Invisalign Diamond, tous deux audités chaque année.",
+    q: "Are your implants and aligners certified?",
+    a: "Yes. We use Straumann implant systems and are a certified Invisalign Diamond provider, both audited every year.",
   },
   {
-    q: "À quoi dois-je m'attendre lors de ma première visite ?",
-    a: "Un examen complet, un scan numérique et une conversation honnête sur les options et les coûts — généralement 45 à 60 minutes, sans fraisage nécessaire.",
+    q: "What should I expect at my first visit?",
+    a: "A full exam, a digital scan and an honest conversation about options and costs — usually 45 to 60 minutes, with no drilling needed.",
   },
 ];
 
@@ -266,7 +273,7 @@ const socials = [
 ];
 
 /* ============================================================
-   COMPOSANT PRINCIPAL
+   MAIN COMPONENT
    ============================================================ */
 
 export interface SanityService {
@@ -285,10 +292,10 @@ export default function AuraDentalLanding({
   const [scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  // Si Sanity a des services publiés, on les utilise (titre + description),
-  // en réutilisant les icônes locales dans l'ordre.
-  // Sinon (Studio vide), on retombe sur la liste codée en dur ci-dessus,
-  // pour que le site ne soit jamais cassé/vide.
+  // If Sanity has published services, we use them (title + description),
+  // reusing the local icons by title.
+  // Otherwise (empty Studio) we fall back to the hard-coded list above,
+  // so the site is never broken or empty.
   const mergedServices: Service[] =
     sanityServices && sanityServices.length > 0
       ? sanityServices.map((s) => ({
@@ -312,20 +319,20 @@ export default function AuraDentalLanding({
 
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  /* --- Barre de navigation : état au scroll --- */
+  /* --- Navigation bar: scrolled state --- */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* --- Parallax sur la scène du hero --- */
+  /* --- Parallax on the hero scene --- */
   useEffect(() => {
     if (!heroRef.current) return;
 
     const ctx = gsap.context(() => {
-      /* Le CTA du hero est au-dessus de la ligne de flottaison : révélé au
-         chargement, sans ScrollTrigger, pour qu'il reste toujours visible. */
+      /* The hero CTA sits above the fold: revealed on load, without a
+         ScrollTrigger, so that it always stays visible. */
       gsap.fromTo(
         ".fr-hero-ctas button",
         { opacity: 0, y: 35 },
@@ -402,7 +409,7 @@ export default function AuraDentalLanding({
     };
   }, []);
 
-  /* --- Effet de Scroll sur les Images, Boutons, Cartes & Liens --- */
+  /* --- Scroll effect on images, buttons, cards & links --- */
   useEffect(() => {
     if (!pageRef.current) return;
 
@@ -469,7 +476,7 @@ export default function AuraDentalLanding({
     return () => tweens.forEach((t) => t.kill());
   }, []);
 
-  /* --- Boucle d'orbite 3D (badges accréditation) --- */
+  /* --- 3D orbit loop (accreditation badges) --- */
   useEffect(() => {
     const radiusX = 260;
     const radiusY = 90;
@@ -505,7 +512,7 @@ export default function AuraDentalLanding({
     };
   }, []);
 
-  /* --- Compteurs animés (Why Us) --- */
+  /* --- Animated counters (Why Us) --- */
   useEffect(() => {
     const counters = document.querySelectorAll<HTMLElement>("[data-count]");
     const triggers: ScrollTrigger[] = [];
@@ -527,7 +534,7 @@ export default function AuraDentalLanding({
               el.textContent =
                 (isDecimal
                   ? obj.val.toFixed(1)
-                  : Math.round(obj.val).toLocaleString("fr-FR")) + suffix;
+                  : Math.round(obj.val).toLocaleString("en-US")) + suffix;
             },
           });
         },
@@ -537,7 +544,7 @@ export default function AuraDentalLanding({
     return () => triggers.forEach((t) => t.kill());
   }, []);
 
-  /* --- Inclinaison 3D des cartes de services --- */
+  /* --- 3D tilt on the service cards --- */
   const handleCardMove = (e: React.MouseEvent<HTMLDivElement>, idx: number) => {
     const card = cardRefs.current[idx];
     if (!card) return;
@@ -551,7 +558,7 @@ export default function AuraDentalLanding({
     if (card) card.style.transform = "";
   };
 
-  /* --- Accordéon FAQ --- */
+  /* --- FAQ accordion --- */
   const toggleFaq = (idx: number) => {
     setOpenFaq((prev) => (prev === idx ? null : idx));
   };
@@ -723,26 +730,25 @@ export default function AuraDentalLanding({
       <Navbar scrolled={scrolled} />
 
       {/* HERO */}
-      <section className="fr-hero" id="accueil" ref={heroRef}>
+      <section className="fr-hero" id="home" ref={heroRef}>
         <div className="fr-hero-copy">
           <div className="fr-hero-eyebrow-pill">
             <span className="dot" />
-            Excellence Dentaire Moderne
+            Modern Dental Excellence
           </div>
           <h1 className="gsap-slide-left">
-            {sanityHero?.title ??
-              "Réinventez Votre Sourire avec"}
-              <em>{sanityHero?.word ?? 'la Précision marocain'}</em>
+            {sanityHero?.title ?? "Reinvent Your Smile with "}
+              <em>{sanityHero?.word ?? "Moroccan Precision"}</em>
               
           </h1>
           <p className="lead gsap-slide-right" data-reveal-delay=".15">
             {sanityHero?.subtitle ??
-              "Une dentisterie méticuleuse, délivrée avec discrétion. AuraDental associe une technologie d&apos;ingénierie suisse à une approche patiente, centrée sur le confort — pour que chaque visite ressemble moins à un acte médical qu&apos;à une parenthèse."}
+              "Meticulous dentistry, delivered quietly. AuraDental pairs Swiss-engineered technology with a patient, comfort-first approach — so every visit feels less like a procedure and more like a pause."}
           </p>
           <div className="fr-hero-ctas">
-            <Link href={"/rendez-vous"}>
+            <Link href={"/appointment"}>
               <button className="group inline-flex items-center gap-2 rounded-full bg-[#18181b] px-7 py-3 text-sm font-semibold text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400">
-                <span>Prendre Rendez-vous</span>
+                <span>Book an Appointment</span>
                 <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5">
                   →
                 </span>
@@ -757,7 +763,7 @@ export default function AuraDentalLanding({
               <div />
             </div>
             <div className="fr-hero-trust-text">
-              <strong>1 200+</strong> sourires restaurés cette année
+              <strong>1,200+</strong> smiles restored this year
             </div>
           </div>
         </div>
@@ -770,33 +776,33 @@ export default function AuraDentalLanding({
                   ? urlFor(sanityHero.img).url()
                   : "https://cdn.prod.website-files.com/6481dbd1a8ecdc2acdd21208/673ee781c3d17897e309a308_dental-office-cabinets-your-key-to-organization-and-style.webp"
               }
-              alt="Cabinet Dentaire"
+alt="Dental practice"
               className="absolute inset-0 h-[130%] w-full -top-[15%] object-cover"
             />
             {/* Badges */}
             <div className="fr-float-badge fr-badge-1">
-              <span className="ic">✨</span>Aperçu du Sourire par IA Actif
+              <span className="ic">✨</span>AI Smile Preview Active
             </div>
             <div className="fr-float-badge fr-badge-2">
-              <span className="ic">⭐</span>4,9/5 · 1 200+ Avis
+              <span className="ic">⭐</span>4.9/5 · 1,200+ Reviews
             </div>
             <div className="fr-float-badge absolute right-6 top-[55%] z-20">
-              <span className="ic">🦷</span>Technologie Indolore Active
+              <span className="ic">🦷</span>Pain-Free Technology Active
             </div>
           </div>
         </div>
       </section>
 
-      {/* RÉSULTATS / SHOWCASE */}
+      {/* RESULTS / SHOWCASE */}
       <section className="fr-showcase-section">
-        <span className="fr-eyebrow">Résultats Réels</span>
+        <span className="fr-eyebrow">Real Results</span>
         <h2 className="gsap-slide-left" style={{ marginTop: 10 }}>
-          Des Sourires Qu&apos;on Remarque, Sans y Penser
+          Smiles People Notice Without Thinking About It
         </h2>
         <p className="sub gsap-slide-right" data-reveal-delay=".1">
-          Chaque transformation commence par un scan et une conversation honnête
-          — et se termine par un sourire qu&apos;on regarde deux fois. Voici
-          quelques résultats, tels quels.
+          Every transformation starts with a scan and an honest conversation —
+          and ends with a smile worth a second look. Here are a few results,
+          exactly as they are.
         </p>
         <div className="fr-showcase-row">
           {showcaseImages.map((src, i) => (
@@ -807,7 +813,7 @@ export default function AuraDentalLanding({
               }}
               className="fr-showcase-card"
             >
-              <img src={src} alt="Résultat de sourire AuraDental" />
+              <img src={src} alt="AuraDental smile result" />
             </div>
           ))}
         </div>
@@ -816,14 +822,14 @@ export default function AuraDentalLanding({
       {/* SERVICES */}
       <section className="fr-services" id="services">
         <div className="fr-section-head">
-          <span className="fr-eyebrow">Nos Services</span>
+          <span className="fr-eyebrow">Our Services</span>
           <h2 className="gsap-slide-left">
-            Des soins pensés autour d&apos;un seul objectif — votre confort
+            Care built around a single goal — your comfort
           </h2>
           <p className="gsap-slide-right" data-reveal-delay=".1">
-            Des contrôles de routine aux transformations complètes du sourire,
-            chaque traitement est planifié avec une précision suisse et une
-            grande douceur.
+            From routine check-ups to complete smile transformations, every
+            treatment is planned with Swiss precision and a great deal of
+            gentleness.
           </p>
         </div>
         <div className="fr-services-grid">
@@ -848,56 +854,56 @@ export default function AuraDentalLanding({
         </div>
       </section>
 
-      {/* POURQUOI NOUS */}
-      <section className="fr-why-us" id="pourquoi-nous">
+      {/* WHY US */}
+      <section className="fr-why-us" id="why-us">
         <div className="fr-why-visual relative overflow-hidden rounded-[2rem]">
           <img
             src="https://kindersmiles.com/wp-content/uploads/2021/03/dentist-standing-with-arms-crossed-dental-clinic-scaled-1.jpg"
-            alt="Précision Dentaire"
+alt="Dental precision"
             className="h-full w-full object-cover rounded-[2rem] gsap-parallax"
             data-parallax="-15"
           />
         </div>
         <div className="fr-why-copy">
-          <span className="fr-eyebrow">Pourquoi Nous Choisir</span>
+          <span className="fr-eyebrow">Why Choose Us</span>
           <h2 className="gsap-slide-left" style={{ marginTop: 14 }}>
-            La précision est une promesse,
+            Precision is a promise,
             <br />
-            pas un argument marketing
+            not a marketing line
           </h2>
           <p className="lead gsap-slide-right" data-reveal-delay=".1">
-            Chaque instrument, chaque protocole et chaque heure de formation
-            continue existent pour rendre votre résultat prévisible — et votre
-            expérience, agréablement banale.
+            Every instrument, every protocol and every hour of continuing
+            education exists to make your result predictable — and your
+            experience pleasantly uneventful.
           </p>
           <ul className="fr-diff-list lead gsap-slide-right">
             <li>
               <span className="chk">✓</span>
               <div>
-                <strong>Équipements calibrés selon les normes suisses</strong>
+                <strong>Equipment calibrated to Swiss standards</strong>
                 <span>
-                  Outils d&apos;imagerie et de façonnage entretenus selon les
-                  tolérances des dispositifs médicaux suisses.
+                  Imaging and shaping tools maintained to Swiss medical-device
+                  tolerances.
                 </span>
               </div>
             </li>
             <li>
               <span className="chk">✓</span>
               <div>
-                <strong>Protocoles centrés sur le confort</strong>
+                <strong>Comfort-first protocols</strong>
                 <span>
-                  Options de sédation et rythme adaptés à votre seuil
-                  d&apos;anxiété, pas à l&apos;horloge.
+                  Sedation options and pacing matched to your anxiety threshold,
+                  not to the clock.
                 </span>
               </div>
             </li>
             <li>
               <span className="chk">✓</span>
               <div>
-                <strong>Plans de traitement transparents</strong>
+                <strong>Transparent treatment plans</strong>
                 <span>
-                  Vous voyez le modèle 3D et le coût avant que quoi que ce soit
-                  ne commence.
+                  You see the 3D model and the cost before anything at all
+                  begins.
                 </span>
               </div>
             </li>
@@ -909,7 +915,7 @@ export default function AuraDentalLanding({
                   0
                 </span>
               </div>
-              <div className="lbl">Années d&apos;Expérience</div>
+              <div className="lbl">Years of Experience</div>
             </div>
             <div className="fr-counter-item">
               <div className="num">
@@ -917,7 +923,7 @@ export default function AuraDentalLanding({
                   0
                 </span>
               </div>
-              <div className="lbl">Sourires Heureux</div>
+              <div className="lbl">Happy Smiles</div>
             </div>
             <div className="fr-counter-item">
               <div className="num">
@@ -925,27 +931,27 @@ export default function AuraDentalLanding({
                   0
                 </span>
               </div>
-              <div className="lbl">Taux de Précision</div>
+              <div className="lbl">Precision Rate</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* BANNIÈRE CTA */}
+      {/* CTA BANNER */}
       <div className="fr-cta-banner-wrap">
         <div className="fr-cta-banner">
-          <span className="fr-eyebrow">Votre Prochain Chapitre</span>
+          <span className="fr-eyebrow">Your Next Chapter</span>
           <h2 className="gsap-slide-left" style={{ marginTop: 16 }}>
-            Un sourire qu&apos;on oublie,
+            A smile you forget about,
             <br />
-            et en qui l&apos;on a confiance
+            and trust completely
           </h2>
           <p className="gsap-slide-right" data-reveal-delay=".1">
-            Réservez une consultation privée et repartez avec un plan clair et
-            honnête — sans pression, sans vente forcée, juste de la précision.
+            Book a private consultation and leave with a clear, honest plan —
+            no pressure, no hard sell, just precision.
           </p>
-          <Link href={"/rendez-vous"}>
-            <button className="fr-btn-gold">Réservez Votre Consultation</button>
+          <Link href={"/appointment"}>
+            <button className="fr-btn-gold">Book Your Consultation</button>
           </Link>
         </div>
       </div>
@@ -953,8 +959,8 @@ export default function AuraDentalLanding({
       {/* FAQ */}
       <section className="fr-faq" id="faq">
         <div className="fr-section-head" style={{ marginBottom: 40 }}>
-          <span className="fr-eyebrow">Bon à Savoir</span>
-          <h2 className="gsap-slide-left">Questions Fréquentes</h2>
+          <span className="fr-eyebrow">Good to Know</span>
+          <h2 className="gsap-slide-left">Frequently Asked Questions</h2>
         </div>
         <div>
           {faqData.map((item, i) => (
@@ -980,17 +986,17 @@ export default function AuraDentalLanding({
         </div>
       </section>
 
-      {/* RÉSEAUX SOCIAUX */}
+      {/* SOCIALS */}
       <section className="px-[5vw] py-28 text-center bg-[#FAFAF8]" id="contact">
         <span className="text-[12px] gsap-slide-left tracking-[.14em] uppercase font-semibold text-[#0D9488]">
-          Restons en Contact
+          Let&apos;s Stay in Touch
         </span>
         <h2 className="font-serif gsap-slide-left text-[clamp(28px,3.4vw,42px)] font-medium text-[#1A1A1A] mt-3 mb-4">
-          Suivez le Cabinet
+          Follow the Practice
         </h2>
         <p className="text-[#57534e] gsap-slide-left text-[15.5px] leading-relaxed max-w-[460px] mx-auto mb-14">
-          Coulisses, avant/après, et petits rappels d&apos;hygiène — sans le
-          bruit habituel des réseaux.
+          Behind the scenes, before and afters, and small hygiene reminders —
+          without the usual social-media noise.
         </p>
 
         <div className="flex flex-wrap justify-center gap-4 max-w-[770px] mx-auto">
@@ -1013,7 +1019,7 @@ export default function AuraDentalLanding({
         </div>
       </section>
 
-      {/* PIED DE PAGE */}
+      {/* FOOTER */}
       <Footer />
     </div>
   );

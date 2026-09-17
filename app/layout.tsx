@@ -20,14 +20,14 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: "Aura Dental",
-  description: "Dentisterie de précision suisse",
+  description: "Swiss-precision dentistry",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fr" className={`${plusJakarta.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`${plusJakarta.variable} ${fraunces.variable}`}>
       <body className="font-sans antialiased">
         <SanityLive />
         {children} <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />{" "}

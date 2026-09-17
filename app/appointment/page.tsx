@@ -14,15 +14,15 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const SERVICES = [
-  "Contrôle Général",
-  "Blanchiment",
+  "General Check-up",
+  "Whitening",
   "Implants",
   "Invisalign",
-  "Urgence Dentaire",
-  "Pédiatrie",
+  "Dental Emergency",
+  "Pediatric Care",
 ];
 
-export default function RendezVousPage() {
+export default function AppointmentPage() {
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -40,7 +40,7 @@ export default function RendezVousPage() {
 
     if (!fullName.trim() || !phone.trim() || !consent) {
       setError(
-        "Merci de remplir les champs requis et d’accepter les conditions.",
+        "Please fill in the required fields and accept the terms.",
       );
       return;
     }
@@ -83,10 +83,10 @@ export default function RendezVousPage() {
             {/* Added mb-12 to push the form down from the heading */}
             <div className="mb-12 text-center lg:text-left">
               <h1 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
-                Prenez Rendez-vous
+                Book an Appointment
               </h1>
               <p className="mt-4 text-base mx-6 text-zinc-500 sm:text-lg">
-                Remplissez le formulaire ci-dessous, notre équipe vous recontactera très rapidement.
+                Fill in the form below and our team will get back to you very shortly.
               </p>
             </div>
 
@@ -96,10 +96,10 @@ export default function RendezVousPage() {
                   <CalendarDays className="h-8 w-8" />
                 </div>
                 <p className="text-2xl font-semibold text-zinc-900">
-                  Merci{fullName ? `, ${fullName.split(" ")[0]}` : ""} !
+                  Thank you{fullName ? `, ${fullName.split(" ")[0]}` : ""}!
                 </p>
                 <p className="mt-3 text-zinc-500 leading-relaxed">
-                  Votre demande a bien été prise en compte. Nous vous appelons très vite pour confirmer la date et l&aposheure.
+                  Your request has been received. We&apos;ll call you very soon to confirm the date and time.
                 </p>
               </div>
             ) : (
@@ -109,7 +109,7 @@ export default function RendezVousPage() {
                     type="text"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    placeholder="Nom et Prénom"
+                    placeholder="Full name"
                     className={inputClasses}
                   />
                 </FormField>
@@ -119,7 +119,7 @@ export default function RendezVousPage() {
                     type="tel"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder="Téléphone"
+                    placeholder="Phone"
                     className={inputClasses}
                   />
                 </FormField>
@@ -143,7 +143,7 @@ export default function RendezVousPage() {
                     }`}
                   >
                     <option value="" disabled>
-                      Quel soin recherchez-vous ?
+                      Which treatment are you looking for?
                     </option>
                     {SERVICES.map((s) => (
                       <option key={s} value={s} className="text-zinc-900">
@@ -177,7 +177,7 @@ export default function RendezVousPage() {
                   <textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Comment pouvons-nous vous aider ?"
+                    placeholder="How can we help you?"
                     rows={3}
                     className={`${inputClasses} min-h-[100px] resize-none pt-4`}
                   />
@@ -202,12 +202,12 @@ export default function RendezVousPage() {
                     </svg>
                   </div>
                   <span className="leading-relaxed transition-colors group-hover:text-zinc-700">
-                    J’accepte que mes données soumises soient{" "}
+                    I agree that the data I submit may be{" "}
                     <a
-                      href="/confidentialite"
+                      href="/privacy"
                       className="font-medium text-zinc-900 underline underline-offset-4 hover:text-teal-600"
                     >
-                      collectées et stockées
+                      collected and stored
                     </a>
                     .
                   </span>
@@ -219,7 +219,7 @@ export default function RendezVousPage() {
                   type="submit"
                   className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-[#09090b] px-6 py-4 text-base font-semibold text-white shadow-xl shadow-zinc-900/20 transition-all duration-200 hover:scale-[1.01] hover:bg-zinc-800 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-zinc-900/20"
                 >
-                  Confirmer le Rendez-vous
+                  Confirm Appointment
                 </button>
               </form>
             )}

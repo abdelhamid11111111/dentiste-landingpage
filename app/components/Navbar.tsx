@@ -16,9 +16,9 @@ const Navbar = ({ scrolled }: Prop) => {
   // On any other page, prefix with "/" so Next.js navigates
   // back to home and then jumps to the anchor.
   const navLinks = [
-    { label: "Accueil", href: "/" },
+    { label: "Home", href: "/" },
     { label: "Services", href: isHome ? "#services" : "/#services" },
-    { label: "Pourquoi Nous", href: isHome ? "#pourquoi-nous" : "/#pourquoi-nous" },
+    { label: "Why Us", href: isHome ? "#why-us" : "/#why-us" },
     { label: "FAQ", href: isHome ? "#faq" : "/#faq" },
     { label: "Contact", href: isHome ? "#contact" : "/#contact" },
   ];
@@ -28,7 +28,7 @@ const Navbar = ({ scrolled }: Prop) => {
       <nav className={`fr-navbar${scrolled ? " scrolled" : ""}`}>
         <Link href={"/"}>
           <div className="group inline-flex items-center gap-3.5 focus:outline-none">
-            {/* Icône SVG : Dent géométrique & Éclat d'Aura */}
+            {/* SVG icon: geometric tooth & Aura sparkle */}
             <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#0EA5A0] via-[#0D9488] to-[#D4AF37] p-2 text-white shadow-md shadow-[#0EA5A0]/20 transition-transform duration-300 group-hover:scale-105">
               <svg
                 viewBox="0 0 32 32"
@@ -67,9 +67,9 @@ const Navbar = ({ scrolled }: Prop) => {
           ))}
         </div>
 
-        {/* <Link href={"/rendez-vous"}>
+        {/* <Link href={"/appointment"}>
           <button className="rounded-full bg-[#18181b] px-7 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-[#3f3f46] focus:outline-none focus:ring-2 focus:ring-gray-400">
-            <span>Prendre Rendez-vous</span>
+            <span>Book an Appointment</span>
           </button>
         </Link> */}
       </nav>
